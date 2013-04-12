@@ -18,7 +18,7 @@ public enum FieldObfuscation {
     /**
      * Packet stream list in NetworkManager.class
      */
-    PACKETLIST("p"),
+    PACKETLIST("q"),
     /**
      * ID->Class hashmap for packets in Packet.class
      */

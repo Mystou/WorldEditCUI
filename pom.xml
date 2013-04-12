@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>wecui</groupId>
     <artifactId>WorldEditCUI</artifactId>
-    <version>1.4.5</version> 
+    <version>1.5.1</version> 
     <name>WorldEditCUI</name>
     <dependencies>
         <dependency>
             <groupId>net.minecraft</groupId>
             <artifactId>minecraft-deobf</artifactId>
-            <version>1.4.5-wecui</version>
+            <version>1.5.1-wecui</version>
         </dependency>
         <dependency>
             <groupId>org.lwjgl.lwjgl</groupId>
@@ -26,12 +26,7 @@
             <artifactId>snakeyaml</artifactId>
             <version>1.9</version>
         </dependency>
-        <dependency>
-            <groupId>com.yetanotherx</groupId>
-            <artifactId>SPCInterfaces</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
+        </dependencies>
     <properties>
         <WEVersion>5.4-SNAPSHOT</WEVersion>
     </properties>

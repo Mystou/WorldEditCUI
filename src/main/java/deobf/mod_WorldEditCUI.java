@@ -36,7 +36,8 @@ public class mod_WorldEditCUI extends BaseMod {
         this.controller = new WorldEditCUI(ModLoader.getMinecraftInstance());
         this.controller.initialize();
 
-        ModLoader.registerEntityID(RenderEntity.class, "CUI", ModLoader.getUniqueEntityId());
+        //ModLoader.registerEntityID(RenderEntity.class, "CUI", ModLoader.getUniqueEntityId());
+        ModLoader.registerEntityID(RenderEntity.class, "CUI", 110); // use ID 110, hope it's unique
 
         ModLoader.setInGameHook(this, true, true);
         ModLoader.registerPacketChannel(this, "WECUI");

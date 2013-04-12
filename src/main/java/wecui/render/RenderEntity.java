@@ -22,8 +22,8 @@ public class RenderEntity extends Entity {
         super(world);
 
         this.controller = controller;
-        this.al = true; // Entity.ignoreFrustumCheck
-        this.Y = true; // Entity.noClip
+        this.am = true; // Entity.ignoreFrustumCheck
+        this.Z = true; // Entity.noClip
         this.b(0, 0); // Entity.setSize()
         controller.getDebugger().debug("Entity spawned");
     }
