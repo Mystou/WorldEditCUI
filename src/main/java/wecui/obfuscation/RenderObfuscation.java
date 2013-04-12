@@ -10,7 +10,7 @@ import deobf.Tessellator;
  * @author yetanotherx
  * @author lahwran
  * 
- * @obfuscated 1.4.5
+ * @obfuscated 1.5.1
  */
 public class RenderObfuscation {
 

@@ -21,7 +21,7 @@ import wecui.render.RenderEntity;
  * @author lahwran
  * @author yetanotherx
  * 
- * @obfuscated 1.4.5
+ * @obfuscated 1.5.1
  */
 public class Obfuscation implements InitializationFactory {
 
