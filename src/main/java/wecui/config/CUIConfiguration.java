@@ -33,7 +33,7 @@ public class CUIConfiguration implements InitializationFactory {
     protected String cylinderGridColor = "#CC3333";
     protected String cylinderEdgeColor = "#CC4C4C";
     protected String cylinderPointColor = "#CC33CC";
-    protected String updateFile = "https://raw.github.com/yetanotherx/WorldEditCUI/master/updates.yml";
+    protected String updateFile = "https://raw.github.com/Mystou/WorldEditCUI/master/updates.yml";
     protected Configuration config = null;
 
     public CUIConfiguration(WorldEditCUI controller) {

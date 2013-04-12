@@ -72,30 +72,30 @@ public class Obfuscation implements InitializationFactory {
     }
 
     public static double getPlayerX(EntityPlayerSP player) {
-        return player.t;
-    }
-
-    public static double getPlayerY(EntityPlayerSP player) {
         return player.u;
     }
 
-    public static double getPlayerZ(EntityPlayerSP player) {
+    public static double getPlayerY(EntityPlayerSP player) {
         return player.v;
+    }
+
+    public static double getPlayerZ(EntityPlayerSP player) {
+        return player.w;
     }
 
     public double getPlayerXGuess(float renderTick) {
         EntityPlayerSP plyr = getPlayer();
-        return plyr.q + ((plyr.t - plyr.q) * renderTick);
+        return plyr.r + ((plyr.u - plyr.r) * renderTick);
     }
 
     public double getPlayerYGuess(float renderTick) {
         EntityPlayerSP plyr = getPlayer();
-        return plyr.r + ((plyr.u - plyr.r) * renderTick);
+        return plyr.s + ((plyr.v - plyr.s) * renderTick);
     }
 
     public double getPlayerZGuess(float renderTick) {
         EntityPlayerSP plyr = getPlayer();
-        return plyr.s + ((plyr.v - plyr.s) * renderTick);
+        return plyr.t + ((plyr.w - plyr.t) * renderTick);
     }
 
     public static EntityPlayerSP getPlayer(Minecraft mc) {
