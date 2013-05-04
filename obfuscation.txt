@@ -8,19 +8,19 @@ renames:
   - notch: mp
     wecui: Entity
     packageOnly: false
-  - notch: bdw
+  - notch: bdv
     wecui: EntityClientPlayerMP
     packageOnly: false
-  - notch: bfk
+  - notch: bfj
     wecui: EntityPlayerSP
     packageOnly: false
   - notch: bs
     wecui: NBTTagCompound
     packageOnly: false
-  - notch: bdl
+  - notch: bdk
     wecui: NetClientHandler
     packageOnly: false
-  - notch: ci
+  - notch: cg
     wecui: NetworkManager
     packageOnly: false
   - notch: ei
@@ -32,16 +32,16 @@ renames:
   - notch: dk
     wecui: Packet250CustomPayload
     packageOnly: false
-  - notch: bha
+  - notch: bgz
     wecui: Render
     packageOnly: false
   - notch: avb
     wecui: RenderHelper
     packageOnly: false
-  - notch: bge
+  - notch: bgd
     wecui: Tessellator
     packageOnly: false
-  - notch: bdt
+  - notch: bds
     wecui: WorldClient
     packageOnly: false
   - notch: arc

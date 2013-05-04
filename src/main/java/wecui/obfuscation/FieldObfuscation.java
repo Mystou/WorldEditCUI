@@ -7,14 +7,14 @@ package wecui.obfuscation;
  * 
  * @author yetanotherx
  * 
- * @obfuscated 1.5.1
+ * @obfuscated 1.5.2
  */
 public enum FieldObfuscation {
 
     /**
      * NetworkManager instance in NetClientHandler.class
      */
-    NETWORKMANAGER("g"),
+    NETWORKMANAGER("f"),
     /**
      * Packet stream list in NetworkManager.class
      */

@@ -12,7 +12,7 @@ import wecui.WorldEditCUI;
  * @author lahwran
  * @author yetanotherx
  * 
- * @obfuscated 1.5.1
+ * @obfuscated 1.5.2
  */
 public class RenderEntity extends Entity {
 
@@ -55,7 +55,7 @@ public class RenderEntity extends Entity {
      * Entity.onUpdate
      */
     @Override
-    public void j_() {
+    public void l_() {
         //Obfuscation.setEntityPositionToPlayer(controller.getMinecraft(), this);
     }
 
@@ -63,16 +63,16 @@ public class RenderEntity extends Entity {
      * Entity.setDead
      */
     @Override
-    public void x() {
+    public void w() {
     }
 
     /**
-     * Entity.whatEver()
+     * Entity.whatEver() / Entity.getEntityName()
      * Returns the name of the entity.
      * @return 
      */
     @Override
-    public String an() {
+    public String am() {
         return "CUI";
     }
 
