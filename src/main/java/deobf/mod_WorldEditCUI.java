@@ -24,106 +24,120 @@ import wecui.render.region.CuboidRegion;
  */
 public class mod_WorldEditCUI extends BaseMod {
 
-    protected WorldEditCUI controller;
-    protected WorldClient lastWorld;
-    protected EntityPlayerSP lastPlayer;
-    protected Entity lastEntity;
-    protected boolean gameStarted = false;
-    public final static Charset UTF_8_CHARSET = Charset.forName("UTF-8");
-    protected int entityUpdateTickCount = 0;
+	protected WorldEditCUI controller;
+	protected WorldClient lastWorld;
+	protected EntityPlayerSP lastPlayer;
+	protected Entity lastEntity;
+	protected boolean gameStarted = false;
+	public final static Charset UTF_8_CHARSET = Charset.forName("UTF-8");
+	protected int entityUpdateTickCount = 0;
 
-    public mod_WorldEditCUI() {
-    }
+	private final String mcfTopic = "https://github.com/Mystou/WorldEditCUI";
 
-    @Override
-    public void load() {
-        this.controller = new WorldEditCUI(ModLoader.getMinecraftInstance());
-        this.controller.initialize();
+	public mod_WorldEditCUI() {
+	}
 
-        //ModLoader.registerEntityID(RenderEntity.class, "CUI", ModLoader.getUniqueEntityId());
-        ModLoader.registerEntityID(RenderEntity.class, "CUI", 110); // use ID 110, hope it's unique
+	@Override
+	public void load() {
+		this.controller = new WorldEditCUI(ModLoader.getMinecraftInstance());
+		this.controller.initialize();
 
-        ModLoader.setInGameHook(this, true, true);
-        ModLoader.registerPacketChannel(this, "WECUI");
-    }
+		//ModLoader.registerEntityID(RenderEntity.class, "CUI", ModLoader.getUniqueEntityId());
+		ModLoader.registerEntityID(RenderEntity.class, "CUI", 110); // use ID 110, hope it's unique
 
-    /**
-     * Checks if the world or player has changed from the last time we checked.
-     * If it's changed, spawn a new render entity and update accordingly.
-     * 
-     * It also checks if initialization tasks have been done, such as checking
-     * for updates, resetting the region, and registering reflection for the
-     * outgoing command handler.
-     * 
-     * @param partialticks
-     * @param mc
-     * @return 
-     */
-    @Override
-    public boolean onTickInGame(float partialticks, Minecraft mc) {
+		ModLoader.setInGameHook(this, true, true);
+		ModLoader.registerPacketChannel(this, "WECUI");
+	}
 
-        if (Obfuscation.getWorld(mc) != lastWorld || Obfuscation.getPlayer(mc) != lastPlayer) {
-            lastEntity = controller.getObfuscation().spawnEntity();
-            lastWorld = Obfuscation.getWorld(mc);
-            lastPlayer = Obfuscation.getPlayer(mc);
+	/**
+	 * Checks if the world or player has changed from the last time we checked.
+	 * If it's changed, spawn a new render entity and update accordingly.
+	 * 
+	 * It also checks if initialization tasks have been done, such as checking
+	 * for updates, resetting the region, and registering reflection for the
+	 * outgoing command handler.
+	 * 
+	 * @param partialticks
+	 * @param mc
+	 * @return 
+	 */
+	@Override
+	public boolean onTickInGame(float partialticks, Minecraft mc) {
 
-            if (!gameStarted) {
-                gameStarted = true;
+		if (Obfuscation.getWorld(mc) != lastWorld || Obfuscation.getPlayer(mc) != lastPlayer) {
+			lastEntity = controller.getObfuscation().spawnEntity();
+			lastWorld = Obfuscation.getWorld(mc);
+			lastPlayer = Obfuscation.getPlayer(mc);
 
-                new Updater(controller).start();
-                this.controller.setSelection(new CuboidRegion(controller));
-                //new EntityUpdateThread(this).start();
+			if (!gameStarted) {
+				gameStarted = true;
 
-                DataPacketList.register(controller);
-            }
-        } else {
-            if( this.entityUpdateTickCount > 1000 ) {
-                this.entityUpdateTickCount = 0;
-                if( lastEntity != null ) {
-                    Obfuscation.setEntityPositionToPlayer(mc, lastEntity);
-                }
-            } else {
-                ++this.entityUpdateTickCount;
-            }
-        }
-        return true;
-    }
+				new Updater(controller).start();
+				this.controller.setSelection(new CuboidRegion(controller));
+				//new EntityUpdateThread(this).start();
 
-    /**
-     * Called when the client receives a CUI packet from the server. 
-     * @param handler
-     * @param packet 
-     */
-    @Override
-    public void clientCustomPayload(NetClientHandler handler, Packet250CustomPayload packet) {
-        ChannelEvent channelevent = new ChannelEvent(controller, new String(Obfuscation.getBytesFromPacket(packet), UTF_8_CHARSET));
-        controller.getEventManager().callEvent(channelevent);
-    }
+				DataPacketList.register(controller);
+			}
+		} else {
+			if( this.entityUpdateTickCount > 1000 ) {
+				this.entityUpdateTickCount = 0;
+				if( lastEntity != null ) {
+					Obfuscation.setEntityPositionToPlayer(mc, lastEntity);
+				}
+			} else {
+				++this.entityUpdateTickCount;
+			}
+		}
+		return true;
+	}
 
-    /**
-     * Called when the client connects to a server. Sends the protocol version 
-     * in a channel message to the server.
-     * @param handler 
-     */
-    @Override
-    public void clientConnect(NetClientHandler handler) {
-        byte[] buffer = ("v|" + WorldEditCUI.protocolVersion).getBytes(UTF_8_CHARSET);
-        ModLoader.clientSendPacket(Obfuscation.newPayloadPacket("WECUI", buffer.length, buffer));
-    }
+	/**
+	 * Called when the client receives a CUI packet from the server. 
+	 * @param handler
+	 * @param packet 
+	 */
+	@Override
+	public void clientCustomPayload(NetClientHandler handler, Packet250CustomPayload packet) {
+		ChannelEvent channelevent = new ChannelEvent(controller, new String(Obfuscation.getBytesFromPacket(packet), UTF_8_CHARSET));
+		controller.getEventManager().callEvent(channelevent);
+	}
 
-    /**
-     * Tells the renderer that all RenderEntity's should be rendered with the
-     * RenderHooks class.
-     * @param map 
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public void addRenderer(Map map) {
-        map.put(RenderEntity.class, new RenderHooks(controller));
-    }
+	/**
+	 * Called when the client connects to a server. Sends the protocol version 
+	 * in a channel message to the server.
+	 * @param handler 
+	 */
+	@Override
+	public void clientConnect(NetClientHandler handler) {
+		byte[] buffer = ("v|" + WorldEditCUI.protocolVersion).getBytes(UTF_8_CHARSET);
+		ModLoader.clientSendPacket(Obfuscation.newPayloadPacket("WECUI", buffer.length, buffer));
+	}
 
-    @Override
-    public String getVersion() {
-        return WorldEditCUI.getVersion();
-    }
+	/**
+	 * Tells the renderer that all RenderEntity's should be rendered with the
+	 * RenderHooks class.
+	 * @param map 
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public void addRenderer(Map map) {
+		map.put(RenderEntity.class, new RenderHooks(controller));
+	}
+
+	@Override
+	public String getVersion() {
+		return WorldEditCUI.getVersion();
+	}
+
+	@Override
+	public String getName()
+	{
+		return "WorldEdit CUI";
+	}
+
+	@Override
+	public String getPriorities()
+	{
+		return "before:*";
+	}
 }

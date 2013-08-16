@@ -50,7 +50,6 @@ public enum FieldObfuscation {
 	}
 
 	public String getVariable() {
-		System.out.println(isDeobfuscatedEnvironment+" "+seargeVariable+" "+variable);
 		if(isDeobfuscatedEnvironment) {
 			return seargeVariable;
 		} else {

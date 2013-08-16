@@ -47,7 +47,7 @@ public class WorldEditCUI {
         this.minecraft = minecraft;
     }
 
-    public void initialize() {
+	public void initialize() {
         this.eventManager = new EventManager(this);
         this.obfuscation = new Obfuscation(this);
         this.selection = new CuboidRegion(this);
