@@ -11,33 +11,54 @@ package wecui.obfuscation;
  */
 public enum FieldObfuscation {
 
-    /**
-     * NetworkManager instance in NetClientHandler.class
-     */
-    NETWORKMANAGER("f"),
-    /**
-     * Packet stream list in NetworkManager.class
-     */
-    PACKETLIST("q"),
-    /**
-     * ID->Class hashmap for packets in Packet.class
-     */
-    IDSTOCLASSES("l"),
-    /**
-     * Class->ID hashmap for packets in Packet.class
-     */
-    CLASSESTOIDS("a");
-    protected String variable;
+	/**
+	 * NetworkManager instance in NetClientHandler.class (netManager -> Reference to the NetworkManager object.)
+	 */
+	NETWORKMANAGER("g", "field_72555_g"),
+	/**
+	 * Packet stream list in NetworkManager.class/TcpConnection.class (dataPackets -> Linked list of packets awaiting sending.)
+	 */
+	PACKETLIST("q", "field_74487_p"),
+	/**
+	 * ID->Class hashmap for packets in Packet.class (packetIdToClassMap -> Maps packet id to packet class)
+	 */
+	IDSTOCLASSES("l", "field_73294_l"),
+	/**
+	 * Class->ID hashmap for packets in Packet.class (packetClassToIdMap -> Maps packet class to packet id)
+	 */
+	CLASSESTOIDS("a", "field_73291_a");
 
-    private FieldObfuscation(String variable) {
-        this.variable = variable;
-    }
+	protected String variable;
+	protected String seargeVariable;
+	private static final boolean isDeobfuscatedEnvironment = getDeobfuscatedEnvironment();
 
-    public String getVariable() {
-        return variable;
-    }
+	private FieldObfuscation(String variable, String seargeVariable) {
+		this.variable = variable;
+		this.seargeVariable = seargeVariable;
+	}
 
-    public static String getVariable(FieldObfuscation type) {
-        return type.getVariable();
-    }
+	private static boolean getDeobfuscatedEnvironment() {
+		try {
+			Class.forName("net.minecraft.world.World");
+			final String pkg = "cpw.mods.fml.common.asm.transformers.deobf";
+			Class.forName(pkg + ".FMLDeobfuscatingRemapper").getField("INSTANCE");
+			System.out.println("WECUI: Deobfuscated environment detected.");
+			return true;
+		} catch (Throwable t) {
+			return false;
+		}    
+	}
+
+	public String getVariable() {
+		System.out.println(isDeobfuscatedEnvironment+" "+seargeVariable+" "+variable);
+		if(isDeobfuscatedEnvironment) {
+			return seargeVariable;
+		} else {
+			return variable;
+		}
+	}
+
+	public static String getVariable(FieldObfuscation type) {
+		return type.getVariable();
+	}
 }

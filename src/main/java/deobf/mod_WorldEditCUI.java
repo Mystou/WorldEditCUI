@@ -33,6 +33,10 @@ public class mod_WorldEditCUI extends BaseMod {
     protected int entityUpdateTickCount = 0;
 
     public mod_WorldEditCUI() {
+    }
+
+    @Override
+    public void load() {
         this.controller = new WorldEditCUI(ModLoader.getMinecraftInstance());
         this.controller.initialize();
 
@@ -41,10 +45,6 @@ public class mod_WorldEditCUI extends BaseMod {
 
         ModLoader.setInGameHook(this, true, true);
         ModLoader.registerPacketChannel(this, "WECUI");
-    }
-
-    @Override
-    public void load() {
     }
 
     /**

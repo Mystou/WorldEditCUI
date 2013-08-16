@@ -50,3 +50,6 @@ renames:
   - notch: ats
     wecui: Minecraft
     packageOnly: false
+  - notch: cn
+    wecui: TcpConnection
+    packageOnly: false

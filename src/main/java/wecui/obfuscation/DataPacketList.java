@@ -5,9 +5,12 @@ import deobf.NetClientHandler;
 import deobf.NetworkManager;
 import deobf.Packet;
 import deobf.Packet3Chat;
+import deobf.TcpConnection;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 import wecui.WorldEditCUI;
 import wecui.event.ChatCommandEvent;
 import wecui.event.OutgoingChatEvent;
@@ -65,7 +68,7 @@ public class DataPacketList<T> extends ArrayList<T> {
     }
 
     /**
-     * Attaches the new packet handler to the actual NetworkManager class
+     * Attaches the new packet handler to the actual TcpConnection class
      * 
      * @param controller 
      */
@@ -92,14 +95,14 @@ public class DataPacketList<T> extends ArrayList<T> {
             Field nmField = NetClientHandler.class.getDeclaredField(FieldObfuscation.NETWORKMANAGER.getVariable());
             nmField.setAccessible(true);
             Object nmMebbe = nmField.get(nch);
-            NetworkManager nm = null;
-            if (nmMebbe instanceof NetworkManager) {
-                nm = (NetworkManager) nmField.get(nch);
+            TcpConnection nm = null;
+            if (nmMebbe instanceof TcpConnection) {
+                nm = (TcpConnection) nmField.get(nch);
             } else {
                 return;
             }
 
-            Field listField = NetworkManager.class.getDeclaredField(FieldObfuscation.PACKETLIST.getVariable());
+            Field listField = TcpConnection.class.getDeclaredField(FieldObfuscation.PACKETLIST.getVariable());
             listField.setAccessible(true);
             List oldPacketList = (List) listField.get(nm);
             for (Object item : oldPacketList) {
