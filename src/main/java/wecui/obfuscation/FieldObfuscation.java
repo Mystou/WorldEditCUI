@@ -7,7 +7,7 @@ package wecui.obfuscation;
  * 
  * @author yetanotherx
  * 
- * @obfuscated 1.5.2
+ * @obfuscated 1.6.2
  */
 public enum FieldObfuscation {
 
