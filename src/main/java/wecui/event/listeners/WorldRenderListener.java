@@ -25,7 +25,6 @@ public class WorldRenderListener implements Listener<WorldRenderEvent> {
      * Renders the current selection if it exists
      * @param event 
      */
-    @Override
     public void onEvent(WorldRenderEvent event) {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glEnable(GL11.GL_BLEND);

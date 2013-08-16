@@ -94,7 +94,7 @@ public class RenderEntity extends Entity {
      * @return 
      */
     @Override
-    public int b(float f) {
+    public int c(float f) {
         return 0xf000f0;
     }
 
@@ -105,7 +105,7 @@ public class RenderEntity extends Entity {
      * @return 
      */
     @Override
-    public float c(float f) {
+    public float d(float f) {
         return 1f;
     }
 }

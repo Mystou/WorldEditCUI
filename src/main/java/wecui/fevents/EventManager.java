@@ -48,7 +48,6 @@ public class EventManager implements InitializationFactory {
         }
     }
 
-    @Override
     public void initialize() throws InitializationException {
     }
 }

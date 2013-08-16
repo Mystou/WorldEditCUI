@@ -20,7 +20,6 @@ public class ChannelListener implements Listener<ChannelEvent> {
         this.controller = controller;
     }
 
-    @Override
     public void onEvent(ChannelEvent event) {
         String[] split = event.getMessage().split("[|]");
         String type = split[0];

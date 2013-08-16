@@ -23,7 +23,6 @@ public class WorldEditCommandListener implements Listener<ChatCommandEvent> {
         this.controller = controller;
     }
 
-    @Override
     public void onEvent(ChatCommandEvent event) {
         if (event.getArgs().length == 0) {
             return;

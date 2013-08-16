@@ -19,7 +19,6 @@ public abstract class BaseRegion implements InitializationFactory {
         this.controller = controller;
     }
 
-    @Override
     public void initialize() {
     }
 

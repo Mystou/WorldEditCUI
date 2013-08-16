@@ -44,10 +44,9 @@ public class CUIConfiguration implements InitializationFactory {
      * Copies the default config file to the proper directory if it does not
      * exist. It then reads the file and sets each variable to the proper value.
      */
-    @Override
     public void initialize() {
 
-        File file = new File(Obfuscation.getWorldEditCUIDir(), "Configuration.yml");
+        File file = new File(controller.getWorldEditCUIDir(), "Configuration.yml");
         file.getParentFile().mkdirs();
 
         if (!file.exists()) {

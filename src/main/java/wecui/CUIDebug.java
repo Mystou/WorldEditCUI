@@ -27,7 +27,6 @@ public class CUIDebug implements InitializationFactory {
         this.controller = controller;
     }
 
-    @Override
     public void initialize() throws InitializationException {
 
         ConsoleLogFormatter formatter = new ConsoleLogFormatter();
@@ -38,7 +37,7 @@ public class CUIDebug implements InitializationFactory {
         logger.addHandler(handler);
 
         try {
-            this.debugFile = new File(Obfuscation.getWorldEditCUIDir(), "WorldEditCUI-debug.txt");
+            this.debugFile = new File(controller.getWorldEditCUIDir(), "WorldEditCUI-debug.txt");
             this.debugMode = controller.getConfiguration().isDebugMode();
 
             if (this.debugMode) {

@@ -6,7 +6,7 @@ import wecui.render.RenderEntity;
 import wecui.render.RenderHooks;
 import java.util.Map;
 
-import net.minecraft.client.Minecraft;
+import deobf.Minecraft;
 import wecui.Updater;
 import wecui.event.ChannelEvent;
 import wecui.obfuscation.DataPacketList;

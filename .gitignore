@@ -40,3 +40,6 @@ Icon?
 Thumbs.db
 
 *.howto
+/.settings
+/.project
+/.classpath

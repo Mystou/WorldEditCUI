@@ -1,11 +1,13 @@
 package wecui;
 
-import net.minecraft.client.Minecraft;
+import java.io.File;
+
+import deobf.Minecraft;
 import wecui.config.CUIConfiguration;
 //import wecui.plugin.LocalPlugin;
 import wecui.event.CUIEvent;
 import wecui.event.ChannelEvent;
-import wecui.event.ChatCommandEvent;
+import wecui.event.ChatCommandEvent;	
 import wecui.event.listeners.CUIListener;
 import wecui.event.WorldRenderEvent;
 import wecui.event.listeners.ChannelListener;
@@ -137,4 +139,8 @@ public class WorldEditCUI {
     public static String getVersion() {
         return VERSION + " for Minecraft version " + MCVERSION;
     }
+
+	public File getWorldEditCUIDir() {
+		return obfuscation.getWorldEditCUIDir();
+	}
 }

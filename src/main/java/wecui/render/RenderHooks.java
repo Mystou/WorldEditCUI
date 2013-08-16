@@ -2,6 +2,7 @@ package wecui.render;
 
 import deobf.Entity;
 import deobf.Render;
+import deobf.bjl;
 import wecui.event.WorldRenderEvent;
 import wecui.WorldEditCUI;
 import wecui.obfuscation.RenderObfuscation;
@@ -53,4 +54,9 @@ public class RenderHooks extends Render {
     public void a(Entity entity, double x, double y, double z, float yaw, float renderTick) {
         renderCUI(entity, x, y, z, yaw, renderTick);
     }
+
+	@Override
+	protected bjl a(Entity arg0) {
+		return new bjl("textures/atlas/blocks.png");
+	}
 }

@@ -8,7 +8,7 @@ import deobf.Packet250CustomPayload;
 import deobf.Packet3Chat;
 import deobf.WorldClient;
 import java.io.File;
-import net.minecraft.client.Minecraft;
+import deobf.Minecraft;
 import wecui.InitializationFactory;
 import wecui.WorldEditCUI;
 import wecui.render.RenderEntity;
@@ -32,7 +32,6 @@ public class Obfuscation implements InitializationFactory {
         this.controller = controller;
     }
 
-    @Override
     public void initialize() {
         this.minecraft = this.controller.getMinecraft();
     }
@@ -48,7 +47,7 @@ public class Obfuscation implements InitializationFactory {
      */
     public void showChatMessage(String chat) {
         if (getPlayer() != null) {
-            getPlayer().b(chat);
+            getPlayer().a(chat);
         }
     }
 
@@ -99,15 +98,15 @@ public class Obfuscation implements InitializationFactory {
     }
 
     public static EntityPlayerSP getPlayer(Minecraft mc) {
-        return mc.g;
+        return mc.h;
     }
 
     public static WorldClient getWorld(Minecraft mc) {
-        return mc.e;
+        return mc.f;
     }
 
     public static void setEntityPositionToPlayer(Minecraft mc, Entity entity) {
-        entity.b(getPlayerX(mc.g), getPlayerY(mc.g), getPlayerZ(mc.g));
+        entity.b(getPlayerX(mc.h), getPlayerY(mc.h), getPlayerZ(mc.h));
     }
 
     public NetClientHandler getNetClientHandler(EntityClientPlayerMP player) {
@@ -115,7 +114,7 @@ public class Obfuscation implements InitializationFactory {
     }
 
     public static String getChatFromPacket(Packet3Chat packet) {
-        return packet.b;
+        return packet.a;
     }
 
     public static byte[] getBytesFromPacket(Packet250CustomPayload packet) {
@@ -130,11 +129,11 @@ public class Obfuscation implements InitializationFactory {
         return packet;
     }
 
-    public static File getMinecraftDir() {
-        return Minecraft.b();
+    public File getMinecraftDir() {
+        return minecraft.x;
     }
 
-    public static File getWorldEditCUIDir() {
+    public File getWorldEditCUIDir() {
         return new File(getMinecraftDir(), "mods" + File.separator + "WorldEditCUI");
     }
 }
